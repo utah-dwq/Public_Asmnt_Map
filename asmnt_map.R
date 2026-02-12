@@ -35,6 +35,14 @@ suppressWarnings({centroids=sf::st_centroid(aup)})
 aup=merge(aup, au_param_labs, by.x="ASSESS_ID", by.y="ASSESSMENT_UNIT_ID")
 if(!dim(aup)[1]==length(unique(assessments$ASSESSMENT_UNIT_ID))){stop("Lengths do not match. Check aggregation and merging")}
 
+# Save shapefile
+st_write(
+  obj = aup, 
+  dsn = "IR_26_au_poly/26_assessments.shp", 
+  delete_dsn = TRUE 
+)
+
+
 map=leaflet()%>%
   addProviderTiles("Esri.WorldTopoMap", group = "World topo", options = providerTileOptions(updateWhenZooming = FALSE,updateWhenIdle = TRUE)) %>%
   addMapPane("au_poly", zIndex = 415)  %>%
