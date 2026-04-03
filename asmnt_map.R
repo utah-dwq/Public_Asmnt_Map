@@ -1,10 +1,10 @@
 # Import Applicable 
 library(sf)
 library(leaflet)
-setwd("~/Public_Asmnt_Map/")
+setwd("~/Documents/GitHub/Public_Asmnt_Map/")
 
 aup=wqTools::au_poly
-assessments=read.csv(file="2026_IR_draft.csv")
+assessments=read.csv(file="2026_IR_results.csv")
 
 
 assessments=within(assessments, {
@@ -79,7 +79,7 @@ map=leaflet()%>%
       zoom=12, openPopup = FALSE, firstTipSubmit = TRUE,
       autoCollapse = TRUE, hideMarkerOnCollapse = TRUE ))
 
-htmlwidgets::saveWidget(map, "index.html", title="Utah 2026 Draft IR")
+htmlwidgets::saveWidget(map, "index.html", title="Utah 2026 IR")
 
 ####################################################
 # To deploy:
